@@ -41,7 +41,7 @@ class EventLogManager(models.Manager):
         events = self.get_queryset().filter(
             entity_id=entity_id
         ).order_by('checkpoint')
-        return reduce(self.model.reducer, events, {})
+        return reduce(self.model.reducer.reduce, events, {})
 
     def get_current_state_from_projection(self, entity_id):
         projection_model = self.model.get_projection()
@@ -52,6 +52,6 @@ class EventLogManager(models.Manager):
                 entity_id=entity_id,
                 checkpoint__gt=projection.checkpoint
             ).order_by('checkpoint')
-            return reduce(self.model.reducer, events, projection.view)
+            return reduce(self.model.reducer.reduce, events, projection.view)
         except projection_model.DoesNotExist:
             return self.get_current_state(entity_id)

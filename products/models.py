@@ -2,9 +2,12 @@ from __future__ import unicode_literals
 
 from base.models import EventMixin, ProjectionMixin
 from products import events
+from products.reducers import Reducer
 
 
 class ProductEvent(EventMixin):
+
+    reducer = Reducer()
 
     # base events
     create_event = events.CreateEvent()
@@ -19,21 +22,6 @@ class ProductEvent(EventMixin):
     @classmethod
     def get_projection(cls):
         return ProductProjection
-
-    @classmethod
-    def reducer(cls, aggregate, next_event):
-        state = super(ProductEvent, cls).reducer(aggregate, next_event)
-        if next_event.event_type == cls.add_category_event.EVENT_TYPE_NAME:
-            state.setdefault(
-                cls.add_category_event.relation_key, []
-            ).append(next_event.data)
-            return state
-        if next_event.event_type == cls.remove_category_event.EVENT_TYPE_NAME:
-            state.get(
-                cls.remove_category_event.relation_key, []
-            ).remove(next_event.data)
-            return state
-        return state
 
 
 class ProductProjection(ProjectionMixin):

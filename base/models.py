@@ -31,23 +31,6 @@ class EventMixin(models.Model):
     def get_projection(cls):
         raise NotImplementedError
 
-    @classmethod
-    def reducer(cls, aggregate, next_event):
-        state = dict(aggregate)
-        if next_event.event_type == cls.create_event.EVENT_TYPE_NAME:
-            return next_event.data
-        if next_event.event_type == cls.update_event.EVENT_TYPE_NAME:
-            state.update(next_event.data)
-            return state
-        if next_event.event_type == cls.attr_delete_event.EVENT_TYPE_NAME:
-            for attr in next_event.data.get('attributes', []):
-                state.pop(attr, None)
-            return aggregate
-        if next_event.event_type == cls.delete_event.EVENT_TYPE_NAME:
-            raise cls.DoesNotExist(
-                'Entity deleted on %s' % next_event.created_at)
-        return state
-
 
 class ProjectionMixin(models.Model):
 
