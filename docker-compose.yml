@@ -1,0 +1,27 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: midimo
+      POSTGRES_USER: midimo
+      POSTGRES_PASSWORD: midimo
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /bin/bash -c "source /venv/bin/activate && ./manage.py runserver 0.0.0.0:8000"
+    working_dir: /code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    volumes:
+      - .:/code
+    environment:
+      PYTHONPATH: /code
+      DB_HOST: postgres
+      DB_NAME: midimo
+      DB_USER: midimo
+      DB_PASSWORD: midimo

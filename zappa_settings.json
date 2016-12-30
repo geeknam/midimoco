@@ -1,0 +1,13 @@
+{
+    "dev": {
+        "debug": true,
+        "delete_local_zip": true,
+        "cors": true,
+        "memory_size": 256,
+        "timeout_seconds": 2,
+        "keep_warm": false,
+        "project_name": "midimoco",
+        "s3_bucket": "lambda.midimo.co",
+        "django_settings": "midimoco.settings"
+    }
+}
