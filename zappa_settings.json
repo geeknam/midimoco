@@ -8,6 +8,7 @@
         "keep_warm": false,
         "project_name": "midimoco",
         "s3_bucket": "lambda.midimo.co",
-        "django_settings": "midimoco.settings"
+        "django_settings": "midimoco.settings",
+        "domain": "www.midimo.co"
     }
 }

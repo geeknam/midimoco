@@ -1,4 +1,163 @@
-p {
-    background: red;
-    width: 300px;
+body {
+    font-family: 'Roboto';
+    font-weight: 100;
+    font-style: normal;
+    background: url(
+        "/static/images/bg_landing.png"
+    ) no-repeat center center fixed;
+    background-size: cover;
+    padding: 0 10px;
+}
+
+input {
+    -webkit-appearance: none;
+}
+
+.logo {
+    margin: 25px;
+}
+
+.logo img {
+    width: 70px;
+}
+
+.hero-position {
+    margin-top: 5%;
+}
+
+.hero-text {
+    font-weight: 100;
+    font-style: normal;
+    color: white;
+    line-height: 150%;
+}
+
+.pretext {
+    margin-top: 25px;
+    color: white;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.coming-soon {
+    margin-top:0;
+    margin-bottom: 40px;
+    padding-top: 0;
+    color: white;
+    font-size: 80px;
+    font-weight: 500;
+    line-height: 85%;
+}
+
+.subscription {
+    margin-top: 20px;
+}
+
+.subscription .email {
+    width: 60%;
+    height: 25px;
+    padding: 8px;
+    font-size: 15px;
+}
+
+input[type=email] { 
+    border: none;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+input[type=submit] {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 2px solid #fff;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.subscription .submit {
+    width: 30%;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.submit:hover {
+    color: black;
+    background-color: #fff;
+}
+
+
+@media screen and (max-width: 800px) and (min-width: 300px){
+    .hero-position {
+        width: 90%;
+        padding: 25px;
+        border-radius: 3px;
+    }
+
+    .pretext {
+        font-size: 25px;
+    }
+
+    .coming-soon {
+        color: white;
+        font-size: 70px;
+    }
+}
+
+
+
+@media (min-width: 800px) and (orientation : landscape) {
+    .hero-position {
+        width: 42%;
+        margin-left: 43%;
+        padding: 25px;
+        border-radius: 3px;
+    }
+}
+
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation : portrait) { 
+
+    .logo img {
+        width: 150px;
+    }
+
+    .logo {
+        margin: 40px;
+    }
+
+    .hero-position {
+        margin-top: 10%;
+        width: 94%;
+        font-size: 30px;
+        padding: 30px;
+        border-radius: 3px;
+    }
+
+    .pretext {
+        font-size: 50px;
+    }
+
+    .coming-soon {
+        font-size: 100px;
+        margin-bottom: 40px;
+    }
+
+    .subscription .email {
+        width: 97%;
+        font-size: 40px;
+        padding: 15px;
+        height: 100px;
+    }
+
+    .subscription .submit {
+        margin-top: 10px;
+        margin-left: 0;
+        width: 100%;
+        font-size: 40px;
+        border: 4px solid #fff;
+        padding: 40px;
+    }
+
 }
