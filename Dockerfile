@@ -9,6 +9,3 @@ RUN virtualenv venv
 
 RUN /bin/bash -c "source /venv/bin/activate && \
     pip install -r /code/requirements.txt"
-
-RUN /bin/bash -c "source /venv/bin/activate && \
-    pip install git+git://github.com/geeknam/Zappa.git@master"

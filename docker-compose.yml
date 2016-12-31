@@ -19,6 +19,8 @@ services:
       - postgres
     volumes:
       - .:/code
+      - ~/.aws/credentials:/root/.aws/credentials
+      - ~/.aws/config:/root/.aws/config
     environment:
       PYTHONPATH: /code
       DB_HOST: postgres
