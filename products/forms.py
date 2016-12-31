@@ -6,19 +6,14 @@ from django.utils.text import slugify
 class ProductForm(forms.Form):
     title = forms.CharField(max_length=100)
     description = forms.CharField()
-    price = forms.DecimalField(
-        min_value=0, decimal_places=2
-    )
+    price = forms.FloatField(min_value=0)
 
 
 class ProductUpdateForm(BaseUpdateEventForm):
     entity_id = forms.CharField(max_length=100)
     title = forms.CharField(max_length=100, required=False)
     description = forms.CharField(required=False)
-    price = forms.DecimalField(
-        min_value=0, decimal_places=2,
-        required=False
-    )
+    price = forms.FloatField(min_value=0, required=False)
 
 
 class ProductDeleteForm(BaseUpdateEventForm):

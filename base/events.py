@@ -1,12 +1,14 @@
 from base.exceptions import InvalidEvent
+from base.signals import update_projection
 
 
 class BaseEvent(object):
 
-    def __init__(self, name=None):
+    def __init__(self, name=None, update_projection=True):
         self.name = name
         self.model = None
         self.entity_id = None
+        self.update_projection = update_projection
 
     def contribute_to_class(self, model, name):
         if not self.name:
@@ -44,9 +46,10 @@ class BaseEvent(object):
     def save(self, payload):
         cleaned_data = self.validate(payload)
         self.entity_id = payload.get('entity_id')
-        return self.manager.create(
-            **self.get_event(cleaned_data)
-        )
+        obj = self.manager.create(**self.get_event(cleaned_data))
+        if self.update_projection:
+            update_projection.send(sender=self.model, event=obj)
+        return obj
 
 
 class BaseCreateEvent(BaseEvent):
